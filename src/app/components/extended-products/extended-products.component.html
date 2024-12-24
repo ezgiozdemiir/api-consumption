@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="table-container">
+      <h1>Electronic Products</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Color</th>
+            <th>Model Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(extendedProduct of extendedProducts; track extendedProduct.id){
+            <tr>
+                <td>{{ extendedProduct.id }}</td>
+                <td>{{ extendedProduct.title }}</td>
+                <td>{{ extendedProduct.color}}</td>
+                <td>{{ extendedProduct.modelYear }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+</div>

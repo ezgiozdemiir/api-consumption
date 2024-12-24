@@ -1,15 +1,24 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { ExtendedProduct, Product } from '../interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService<T> {
+  //LOCAL REQUEST
+  private localAPIUrl = 'assets/data/products.json'; 
+  http = inject(HttpClient)
+
+  getProductsByType<T extends Product>(filterFn: (product: Product) => product is T): Observable<T[]> {
+    return this.http.get<T[]>(this.localAPIUrl).pipe(
+      map((products: Product[]) => products.filter(filterFn))
+    );
+  }
+  
+  //API REQUEST
   private apiUrl = 'https://fakestoreapi.com/products';
-
-  constructor(private http: HttpClient) {}
-
 
   getProducts(): Observable<T[]> {
     return this.http.get<T[]>(this.apiUrl);
