@@ -14,7 +14,7 @@
         </thead>
         <tbody>
           @for(product of products; track product.id ){
-          <tr *ngFor="let product of products">
+          <tr>
             <td>{{ product.id }}</td>
             <td>{{ product.title }}</td>
             <td>{{ product.price | currency }}</td>
