@@ -13,6 +13,7 @@
           </tr>
         </thead>
         <tbody>
+          @for(product of products; track product.id ){
           <tr *ngFor="let product of products">
             <td>{{ product.id }}</td>
             <td>{{ product.title }}</td>
@@ -24,6 +25,7 @@
               <button (click)="deleteProduct(product.id)">Delete</button>
             </td>
           </tr>
+        }
         </tbody>
       </table>
     </div>
